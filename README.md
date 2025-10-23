@@ -1,49 +1,70 @@
-# 🚀 Cesar Frontend
+# Frontend React + Tailwind (Diseño Minimal)
 
-Frontend moderno desarrollado con **React**, diseñado con un enfoque limpio, profesional y adaptable para aplicaciones empresariales.  
-Incluye autenticación, registro de usuarios y perfil conectado a una API backend.
+Este proyecto es una SPA construida con React y Vite, usando TailwindCSS. Integra autenticación (login, registro, perfil) y un diseño visual sencillo, sobrio y no futurista.
 
----
+## Características
+- Rutas públicas y protegidas: `login`, `register`, `profile`.
+- Estado de autenticación con contexto React.
+- Consumo de API con Axios y token `Bearer`.
+- Estilos minimalistas con tarjetas blancas, bordes grises y tipografía sobria.
 
-## 🧩 Tecnologías principales
+## Requisitos
+- Node.js 18+ y npm.
 
-- ⚛️ **React 18+**
-- 🧠 **Context API** (Manejo de autenticación)
-- 🎨 **TailwindCSS** (Diseño moderno y responsivo)
-- 🔄 **React Router DOM** (Navegación entre páginas)
-- ☁️ **Vercel** (Despliegue en la nube)
-- ⚙️ **Vite / Create React App** (según configuración)
+## Inicio Rápido
+1. Instalar dependencias:
+   ```bash
+   npm install
+   ```
+2. Ejecutar entorno de desarrollo:
+   ```bash
+   npm run dev
+   ```
+3. Abre `http://localhost:5174/`.
 
----
+## Scripts
+- `npm run dev`: servidor de desarrollo (Vite).
+- `npm run build`: build de producción.
+- `npm run preview`: vista previa del build.
 
-## 📁 Estructura del proyecto
-
+## Estructura
+```
 src/
-├─ auth/
-│ └─ context/
-│ └─ AuthContext.jsx # Manejo global de login/register/logout
-├─ features/
-│ ├─ profile/
-│ │ ├─ pages/
-│ │ │ └─ Profile.jsx # Vista de perfil
-│ │ └─ hooks/
-│ │ └─ useProfile.js
-│ └─ auth/
-│ ├─ pages/
-│ │ ├─ Login.jsx # Página de inicio de sesión
-│ │ └─ Register.jsx # Página de registro
-├─ router.jsx # Definición de rutas
-├─ main.jsx # Punto de entrada principal
-└─ App.jsx # Enrutamiento global
+  features/
+    auth/        # Login, Register, contexto y servicios
+    profile/     # Página de perfil y hooks
+  components/    # ProtectedRoute
+  router.jsx     # Definición de rutas
+  main.jsx       # Punto de entrada
+  index.css      # Estilos globales (Tailwind)
+```
 
+## Rutas
+- `/login`: inicia sesión y almacena el token en `localStorage`.
+- `/register`: registro de usuario (no inicia sesión automáticamente).
+- `/profile`: requiere autenticación; muestra datos del usuario.
 
----
+## Configuración de API
+El endpoint base está definido en `src/features/auth/services/authService.js`:
+```js
+const BASE_URL = 'https://reflexoperu-v3.marketingmedico.vip/backend/public/api';
+```
+- El token se envía en cada request con `Authorization: Bearer <token>`.
+- Si el backend responde `401`, el token se limpia automáticamente del `localStorage`.
 
-## ⚙️ Instalación
+## Estilo y Diseño
+- Fondo general gris claro (`bg-gray-100`), tarjetas blancas con bordes grises.
+- Inputs simples, sin gradientes ni efectos.
+- Íconos y tipografía en tonos grises para máxima legibilidad.
 
-Clona el repositorio y entra al proyecto:
+## Problemas Comunes
+- `422 Unprocessable Entity` en registro: el backend valida campos. Por ejemplo, "The email has already been taken" o contraseñas que no coinciden.
+- `401 Unauthenticated` en login/perfil: credenciales inválidas o token vencido/invalidado.
+- Solución rápida:
+  - Usa un correo único y completa campos requeridos.
+  - Asegura que `password` y `password_confirmation` coincidan.
+  - Limpia el token si persiste el error: `localStorage.removeItem('token')` y vuelve a iniciar sesión.
 
-```bash
-git clone https://github.com/CesarDT-bit/Cesar-Frontend.git
-cd Cesar-Frontend
+## Licencia
+Sin licencia específica. Usa y adapta según tus necesidades.
 
