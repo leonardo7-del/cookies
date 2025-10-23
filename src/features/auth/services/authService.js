@@ -33,10 +33,10 @@ export const authService = {
       console.log('✅ Registro exitoso:', response.data);
       return response.data;
     } catch (error) {
-      console.error('❌ Error COMPLETO del backend:');
-      console.error('📝 Mensaje:', error.response?.data?.message);
-      console.error('🔍 Errores específicos:', error.response?.data?.errors);
-      console.error('📊 Status:', error.response?.status);
+      console.error('Error COMPLETO del backend:');
+      console.error('Mensaje:', error.response?.data?.message);
+      console.error('Errores específicos:', error.response?.data?.errors);
+      console.error('Status:', error.response?.status);
       throw error;
     }
   },
@@ -49,7 +49,7 @@ export const authService = {
       }
       return response.data;
     } catch (error) {
-      console.error('❌ Error en login:', error.response?.data);
+      console.error('Error en login:', error.response?.data);
       throw error;
     }
   },
@@ -60,7 +60,7 @@ export const authService = {
       localStorage.removeItem('token');
       return response.data;
     } catch (error) {
-      console.error('❌ Error en logout:', error.response?.data);
+      console.error('Error en logout:', error.response?.data);
       throw error;
     }
   },
@@ -70,7 +70,7 @@ export const authService = {
       const response = await api.get('/profile');
       return response.data;
     } catch (error) {
-      console.error('❌ Error al obtener perfil:', error.response?.data);
+      console.error('Error al obtener perfil:', error.response?.data);
       throw error;
     }
   }

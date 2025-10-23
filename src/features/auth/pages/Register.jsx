@@ -43,10 +43,10 @@ const Register = () => {
       console.error("Error:", error);
       if (error.response?.data?.errors) {
         const errorMessages = Object.values(error.response.data.errors).flat();
-        alert(`❌ Errores:\n\n${errorMessages.join("\n")}`);
+        alert(`Errores:\n\n${errorMessages.join("\n")}`);
       } else {
         alert(
-          `❌ Error: ${
+          `Error: ${
             error.response?.data?.message || "Error al registrar usuario"
           }`
         );
