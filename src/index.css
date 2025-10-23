@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base mínima para look neutro */
+@layer base {
+  html, body {
+    @apply bg-gray-100 text-gray-900;
+  }
+  a {
+    @apply text-gray-900;
+  }
+}
